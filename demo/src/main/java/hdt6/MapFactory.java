@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 
 public class MapFactory {
-    public static Map<String, String> crearMap(String tipo) {
+    public static Map<Carta, Integer> crearMap(String tipo) {
         switch (tipo.toUpperCase()) {
             case "HASHMAP":
                 return new HashMap<>();
