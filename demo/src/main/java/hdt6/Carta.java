@@ -1,8 +1,9 @@
 package hdt6;
 
-public class Carta {
+public class Carta implements Comparable<Carta> {
     private String nombre;
     private String tipo;
+    private Integer cantidad = 0;
 
     // Constructor que toma la cadena completa y divide nombre y tipo
     public Carta(String cadena) {
@@ -28,13 +29,13 @@ public class Carta {
         return tipo;
     }
 
-    public static void main(String[] args) {
-        // Ejemplo de uso
-        String cadena = "Abyssal Designator|Hechizo";
-        Carta carta = new Carta(cadena);
+    public Integer aumentarCantidad() {
+        this.cantidad++;
+        return cantidad;
+    }
 
-        // Obtener y mostrar el nombre y el tipo
-        System.out.println("Nombre: " + carta.getNombre());
-        System.out.println("Tipo: " + carta.getTipo());
+    @Override
+    public int compareTo(Carta otraCarta) {
+        return this.nombre.compareTo(otraCarta.nombre);
     }
 }
