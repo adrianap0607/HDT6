@@ -76,19 +76,58 @@ public class App {
                         String decision2 = sc.nextLine();
                         switch(decision2){
                             case "1":
-                                
+                                System.out.println("¿Cuál carta quieres agregar a tu colección?");
+                                nombreCarta = sc.nextLine();
+                                cartaEncontrada = false;
+                                for(Carta carta: cartas){
+                                    if(carta.getNombre().equals(nombreCarta)){
+                                        mapUtilizado.put(carta, carta.aumentarCantidad());
+                                        cartaEncontrada = true;
+                                        System.out.println("Se ha agregado la carta a tu colección.");
+                                    }
+                                }
+                                if(!cartaEncontrada){
+                                    System.out.println("Lamentamos informarte que no hemos encontrado la carta que has solicitado.");
+                                }
                                 break;
 
                             case "2":
-                                
+                                System.out.println("¿De qué carta deseas saber su tipo?");
+                                nombreCarta = sc.nextLine();
+                                cartaEncontrada = false;
+                                for(Carta carta: cartas){
+                                    if(carta.getNombre().equals(nombreCarta)){
+                                        System.out.println("El tipo de la carta " + carta.getNombre() + " es " + carta.getTipo() + ".");
+                                        cartaEncontrada = true;
+                                    }
+                                }
+                                if(!cartaEncontrada){
+                                    System.out.println("Lamentamos informarte que no hemos encontrado la carta que has solicitado.");
+                                }
                                 break;
 
                             case "3":
-                                
+                                int indice = 1;
+                                for(Map.Entry<Carta, Integer> entry: mapUtilizado.entrySet()){
+                                    Carta carta = entry.getKey();
+                                    int cantidad1 = entry.getValue();
+                                    System.out.println(indice + ". " + carta.getNombre() + "|" + carta.getTipo() + " - se tiene/tienen " + cantidad1 + " carta/cartas.\n");
+                                    indice++;
+                                }                                
                                 break;
 
                             case "4":
-                                
+                                int indice2 = 1;
+                                for(String tipo: tiposCarta){
+                                    for(Map.Entry<Carta, Integer> entry: mapUtilizado.entrySet()){
+                                        Carta carta = entry.getKey();
+                                        int cantidad1 = entry.getValue();
+                                        if(carta.getTipo().equals(tipo)){
+                                            System.out.println(indice2 + ". " + carta.getNombre() + "|" + carta.getTipo() + " - se tiene/tienen " + cantidad1 + " carta/cartas.\n");
+                                            indice2++;
+                                        }
+                                    }
+                                }
                                 break;
 
                             case "5":
@@ -101,7 +140,15 @@ public class App {
                                 break;
 
                             case "6":
-                                
+                                System.out.println("----------------------------------------------------------");
+                                for(String tipo: tiposCarta){
+                                    for(Carta carta: cartas){
+                                        if(carta.getTipo().equals(tipo)){
+                                            System.out.println(carta.getNombre() + "|" + carta.getTipo());
+                                        }
+                                    }
+                                }
+                                System.out.println("----------------------------------------------------------");
                                 break;
 
                             case "7":
